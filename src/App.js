@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Fragment } from "react";
+import "./App.css";
+import Selection from "./selection";
+import { connect } from "react-redux";
 
-function App() {
+function App({ country , number}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Selection />
+      <h1> {country}</h1>
+      <h1> {number}</h1>
+    </Fragment>
   );
 }
 
-export default App;
+const mapsToProps = ({ country }) => ({
+  country: country.currentCountry,
+  number: country.number,
+});
+
+export default connect(mapsToProps, null)(App);
